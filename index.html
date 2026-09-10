@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>STC-Chama | Member Resource Hub</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            stcNavy: '#1C2751',
+            stcGold: '#B09B79',
+            stcBeige: '#E8E7E2',
+            stcGray: '#B9B9B9',
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            heading: ['Montserrat', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-stcBeige text-stcNavy font-sans antialiased min-h-screen flex flex-col justify-between selection:bg-stcGold selection:text-white">
+
+  <!-- TOP HEADER -->
+  <header class="w-full bg-stcNavy text-white py-8 px-4 shadow-md border-b-2 border-stcGold">
+    <div class="max-w-3xl mx-auto space-y-3">
+      <!-- Badge Right-Aligned -->
+      <div class="flex justify-end">
+        <span class="inline-block px-3 py-1 bg-stcGold/20 border border-stcGold text-stcGold text-[10px] sm:text-xs font-semibold rounded-full tracking-wider uppercase">
+          Internal Member Hub
+        </span>
+      </div>
+      <!-- Heading & Subtitle Left-Aligned -->
+      <div class="text-left space-y-1">
+        <h1 class="font-heading text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+          STC-Chama Directory
+        </h1>
+        <p class="text-sm sm:text-base text-stcBeige/80 max-w-md font-medium">
+          Official payment accounts, access forms, and governance documentation.
+        </p>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTAINER -->
+  <main class="max-w-3xl w-full mx-auto px-4 py-8 space-y-10 flex-grow">
+
+    <!-- SECTION 1: CONTRIBUTION & PAYMENT ACCOUNTS -->
+    <section class="space-y-4">
+      <div class="border-b border-stcNavy/10 pb-2 flex flex-col sm:flex-row sm:items-end justify-between gap-1">
+        <h2 class="font-heading text-xl font-bold text-stcNavy tracking-tight">
+          Contribution Accounts
+        </h2>
+        <!-- Updated Actionable Microcopy -->
+        <span class="text-xs font-medium text-stcGold bg-stcNavy px-2 py-1 rounded w-fit">
+          Send confirmation SMS/receipt to STC Fund Manager upon payment
+        </span>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        
+        <!-- CARD 1: ROSCA Account -->
+        <div class="bg-white rounded-xl p-5 shadow-sm border border-stcNavy/10 flex flex-col justify-between space-y-4">
+          <div class="space-y-1">
+            <span class="inline-block text-[10px] font-bold uppercase tracking-wider text-stcGold bg-stcNavy px-2.5 py-0.5 rounded">
+              ROSCA Account
+            </span>
+            <h3 class="font-heading font-bold text-lg text-stcNavy pt-1">Standard Chartered</h3>
+            <p class="text-xs text-stcNavy/60">KE Payment Channel</p>
+          </div>
+
+          <div class="space-y-2 text-sm bg-stcBeige/50 p-3 rounded-lg border border-stcNavy/5 font-mono">
+            <div>
+              <span class="text-[11px] text-stcNavy/50 uppercase font-sans font-medium block">Paybill</span>
+              <div class="flex justify-between items-center">
+                <span class="font-bold text-stcNavy">329 329</span>
+                <button onclick="copyToClipboard('329329', this)" class="text-xs text-stcGold hover:underline font-sans font-semibold">Copy</button>
+              </div>
+            </div>
+            <div class="border-t border-stcNavy/10 pt-1.5">
+              <span class="text-[11px] text-stcNavy/50 uppercase font-sans font-medium block">Account No.</span>
+              <div class="flex justify-between items-center">
+                <span class="font-bold text-stcNavy text-xs">0100437205000</span>
+                <button onclick="copyToClipboard('0100437205000', this)" class="text-xs text-stcGold hover:underline font-sans font-semibold">Copy</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD 2: STC-EEF Account -->
+        <div class="bg-white rounded-xl p-5 shadow-sm border border-stcNavy/10 flex flex-col justify-between space-y-4">
+          <div class="space-y-1">
+            <span class="inline-block text-[10px] font-bold uppercase tracking-wider text-stcGold bg-stcNavy px-2.5 py-0.5 rounded">
+              STC-EEF Account
+            </span>
+            <h3 class="font-heading font-bold text-lg text-stcNavy pt-1">Etica Capital</h3>
+            <p class="text-xs text-stcNavy/60">Emergency & Expense Fund</p>
+          </div>
+
+          <div class="space-y-2 text-sm bg-stcBeige/50 p-3 rounded-lg border border-stcNavy/5 font-mono">
+            <div>
+              <span class="text-[11px] text-stcNavy/50 uppercase font-sans font-medium block">Paybill</span>
+              <div class="flex justify-between items-center">
+                <span class="font-bold text-stcNavy">4096483</span>
+                <button onclick="copyToClipboard('4096483', this)" class="text-xs text-stcGold hover:underline font-sans font-semibold">Copy</button>
+              </div>
+            </div>
+            <div class="border-t border-stcNavy/10 pt-1.5">
+              <span class="text-[11px] text-stcNavy/50 uppercase font-sans font-medium block">Account No.</span>
+              <div class="flex justify-between items-center">
+                <span class="font-bold text-stcNavy text-xs">81860MA</span>
+                <button onclick="copyToClipboard('81860MA', this)" class="text-xs text-stcGold hover:underline font-sans font-semibold">Copy</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD 3: Investment Account -->
+        <div class="bg-white rounded-xl p-5 shadow-sm border border-stcNavy/10 flex flex-col justify-between space-y-4">
+          <div class="space-y-1">
+            <span class="inline-block text-[10px] font-bold uppercase tracking-wider text-stcGold bg-stcNavy px-2.5 py-0.5 rounded">
+              STC-IU Account
+            </span>
+            <h3 class="font-heading font-bold text-lg text-stcNavy pt-1">Etica Capital</h3>
+            <p class="text-xs text-stcNavy/60">Investment Unit Portfolio</p>
+          </div>
+
+          <div class="space-y-2 text-sm bg-stcBeige/50 p-3 rounded-lg border border-stcNavy/5 font-mono">
+            <div>
+              <span class="text-[11px] text-stcNavy/50 uppercase font-sans font-medium block">Paybill</span>
+              <div class="flex justify-between items-center">
+                <span class="font-bold text-stcNavy">4096483</span>
+                <button onclick="copyToClipboard('4096483', this)" class="text-xs text-stcGold hover:underline font-sans font-semibold">Copy</button>
+              </div>
+            </div>
+            <div class="border-t border-stcNavy/10 pt-1.5">
+              <span class="text-[11px] text-stcNavy/50 uppercase font-sans font-medium block">Account No.</span>
+              <div class="flex justify-between items-center">
+                <span class="font-bold text-stcNavy text-xs">81860M</span>
+                <button onclick="copyToClipboard('81860M', this)" class="text-xs text-stcGold hover:underline font-sans font-semibold">Copy</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION 2: MASTER DIRECTORY HUB -->
+    <section class="space-y-4">
+      <div class="border-b border-stcNavy/10 pb-2">
+        <h2 class="font-heading text-xl font-bold text-stcNavy tracking-tight">
+          Master Shared Drive
+        </h2>
+      </div>
+
+      <a href="https://drive.google.com/drive/folders/1lkhd_kA2FFl1r18N8p3LEHxcbcd9rlyj?usp=drive_link" target="_blank" rel="noopener noreferrer" class="block bg-stcNavy text-white rounded-xl p-5 shadow-sm hover:shadow-md transition-all group">
+        <div class="flex items-start justify-between">
+          <div class="space-y-1">
+            <div class="flex items-center space-x-2">
+              <svg class="w-5 h-5 text-stcGold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path></svg>
+              <h3 class="font-heading font-bold text-lg text-white group-hover:text-stcGold transition-colors">
+                STC Master Folder
+              </h3>
+            </div>
+            <p class="text-xs text-stcBeige/70 pl-7">
+              Restricted folder: Vault, ROSCA Dashboards, STC-IU, Meetings, Onboarding, and EEF files.
+            </p>
+          </div>
+          <span class="text-stcGold group-hover:translate-x-1 transition-transform">&rarr;</span>
+        </div>
+      </a>
+    </section>
+
+    <!-- SECTION 3: ACTION FORMS & APPLICATIONS -->
+    <section class="space-y-4">
+      <div class="border-b border-stcNavy/10 pb-2">
+        <h2 class="font-heading text-xl font-bold text-stcNavy tracking-tight">
+          Forms & Member Applications
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+
+        <a href="https://bit.ly/STCLA27" target="_blank" rel="noopener noreferrer" class="bg-white rounded-xl p-4 shadow-sm border border-stcNavy/10 hover:border-stcGold transition-all block group">
+          <div class="flex justify-between items-center">
+            <div>
+              <h3 class="font-heading font-semibold text-sm text-stcNavy group-hover:text-stcGold transition-colors">
+                Member Lending Program (STC-MLP)
+              </h3>
+              <p class="text-xs text-stcNavy/60 mt-0.5">Apply for a member loan</p>
+            </div>
+            <span class="text-xs text-stcNavy/40 group-hover:text-stcGold font-mono">&nearr;</span>
+          </div>
+        </a>
+
+        <a href="https://bit.ly/STCLA27" target="_blank" rel="noopener noreferrer" class="bg-white rounded-xl p-4 shadow-sm border border-stcNavy/10 hover:border-stcGold transition-all block group">
+          <div class="flex justify-between items-center">
+            <div>
+              <h3 class="font-heading font-semibold text-sm text-stcNavy group-hover:text-stcGold transition-colors">
+                STC Merchandise Form
+              </h3>
+              <p class="text-xs text-stcNavy/60 mt-0.5">Order official apparel & gear</p>
+            </div>
+            <span class="text-xs text-stcNavy/40 group-hover:text-stcGold font-mono">&nearr;</span>
+          </div>
+        </a>
+
+        <a href="https://bit.ly/STCIUGR-1" target="_blank" rel="noopener noreferrer" class="bg-white rounded-xl p-4 shadow-sm border border-stcNavy/10 hover:border-stcGold transition-all block group">
+          <div class="flex justify-between items-center">
+            <div>
+              <h3 class="font-heading font-semibold text-sm text-stcNavy group-hover:text-stcGold transition-colors">
+                Growth 1 Subscription Form
+              </h3>
+              <p class="text-xs text-stcNavy/60 mt-0.5">STC Investment Unit subscriptions</p>
+            </div>
+            <span class="text-xs text-stcNavy/40 group-hover:text-stcGold font-mono">&nearr;</span>
+          </div>
+        </a>
+
+        <div class="bg-white/60 rounded-xl p-4 border border-dashed border-stcNavy/20 flex justify-between items-center">
+          <div>
+            <h3 class="font-heading font-semibold text-sm text-stcNavy/70">
+              ROSCA Cycle 4 Commitment Form
+            </h3>
+            <p class="text-xs text-stcNavy/50 mt-0.5">PDF download coming soon</p>
+          </div>
+          <span class="text-[10px] uppercase font-bold text-stcGold bg-stcNavy/5 px-2 py-0.5 rounded">Pending</span>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION 4: CONTACT & COLLABORATIONS -->
+    <section class="bg-white rounded-xl p-6 shadow-sm border border-stcNavy/10 space-y-3">
+      <div>
+        <h3 class="font-heading font-bold text-base text-stcNavy">Get in Touch</h3>
+        <p class="text-xs text-stcNavy/70 mt-0.5">
+          Have questions, general inquiries, or partnership proposals? Reach out to us via our official channels below.
+        </p>
+      </div>
+      <div class="flex flex-col sm:flex-row sm:items-center gap-3 pt-2 text-xs font-medium">
+        <a href="mailto:info.stcinvestmentgroup@gmail.com" class="inline-flex items-center space-x-2 text-stcNavy hover:text-stcGold transition-colors bg-stcBeige/50 px-3 py-2 rounded-lg border border-stcNavy/5">
+          <svg class="w-4 h-4 text-stcGold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+          <span>info.stcinvestmentgroup@gmail.com</span>
+        </a>
+        <a href="https://instagram.com/stcinvestmentgroup" target="_blank" rel="noopener noreferrer" class="inline-flex items-center space-x-2 text-stcNavy hover:text-stcGold transition-colors bg-stcBeige/50 px-3 py-2 rounded-lg border border-stcNavy/5">
+          <svg class="w-4 h-4 text-stcGold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          <span>@stcinvestmentgroup</span>
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="w-full border-t border-stcNavy/10 py-8 px-4 text-center bg-white/40 space-y-3">
+    <div class="max-w-xl mx-auto space-y-1">
+      <p class="font-heading font-semibold text-xs text-stcNavy">
+        STC-Chama &bull; More Than a Group.
+      </p>
+      <p class="text-[11px] text-stcNavy/50 leading-relaxed">
+        This portal and linked resources are intended solely for authorized STC-Chama members. Personal data submitted via forms is processed in accordance with the Kenya Data Protection Act (2019) for organizational logistics and member services.
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    function copyToClipboard(text, element) {
+      navigator.clipboard.writeText(text).then(() => {
+        const originalText = element.innerText;
+        element.innerText = 'Copied!';
+        element.classList.add('text-green-600');
+        setTimeout(() => {
+          element.innerText = originalText;
+          element.classList.remove('text-green-600');
+        }, 1500);
+      });
+    }
+  </script>
+</body>
+</html>
