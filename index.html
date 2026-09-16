@@ -384,18 +384,18 @@
           </div>
         </a>
 
-        <!-- ROSCA CYCLE 4 COMMITMENT FORM (PASSWORD PROTECTED PDF) -->
-        <div class="bg-white rounded-xl p-4 shadow-sm border border-stcNavy/10 flex justify-between items-center sm:col-span-2 stc-interactive-card">
-          <div>
-            <div class="flex items-center space-x-2">
+        <!-- ROSCA CYCLE 4 COMMITMENT FORM (RESPONSIVE STACK LAYOUT FIX) -->
+        <div class="bg-white rounded-xl p-4.5 shadow-sm border border-stcNavy/10 flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:col-span-2 stc-interactive-card">
+          <div class="space-y-1">
+            <div class="flex flex-wrap items-center gap-2">
               <h3 class="font-heading font-semibold text-sm text-stcNavy">
                 ROSCA Cycle 4 Commitment Form
               </h3>
-              <span class="text-[9px] uppercase font-bold text-amber-900 bg-amber-100 border border-amber-300 px-2 py-0.5 rounded">Password Protected</span>
+              <span class="text-[9px] uppercase font-bold text-amber-900 bg-amber-100 border border-amber-300 px-2 py-0.5 rounded whitespace-nowrap">Password Protected</span>
             </div>
-            <p class="text-xs text-stcNavy/60 mt-0.5">Requires member password provided via private channels</p>
+            <p class="text-xs text-stcNavy/60">Requires member password provided via private channels</p>
           </div>
-          <button onclick="promptCommitmentDownload()" class="px-3.5 py-1.5 bg-stcNavy text-white text-xs font-semibold rounded-lg hover:bg-stcGold transition-colors shadow-xs active:scale-95">
+          <button onclick="promptCommitmentDownload()" class="w-full sm:w-auto text-center px-4 py-2.5 sm:py-2 bg-stcNavy text-white text-xs font-semibold rounded-lg hover:bg-stcGold transition-colors shadow-xs active:scale-95 whitespace-nowrap">
             Download PDF
           </button>
         </div>
