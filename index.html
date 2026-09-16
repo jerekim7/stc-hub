@@ -157,22 +157,22 @@
   <!-- STICKY FILTER PILLS BAR -->
   <nav id="sticky-nav" class="sticky top-0 z-40 bg-stcBeige/90 backdrop-blur-md border-b border-stcNavy/10 py-3 px-4 shadow-sm transition-all duration-300">
     <div class="max-w-3xl mx-auto flex items-center space-x-2 overflow-x-auto no-scrollbar text-xs font-semibold">
-      <button onclick="filterCategory('all')" id="btn-all" class="filter-btn px-4 py-1.5 rounded-full bg-stcNavy text-white border border-stcNavy transition-all active:scale-95">
+      <button onclick="filterCategory('all')" id="btn-all" class="filter-btn px-4 py-1.5 rounded-full bg-stcNavy text-white border border-stcNavy transition-all active:scale-95 whitespace-nowrap">
         All
       </button>
-      <button onclick="filterCategory('accounts')" id="btn-accounts" class="filter-btn px-4 py-1.5 rounded-full bg-white text-stcNavy border border-stcNavy/15 hover:border-stcGold transition-all active:scale-95">
+      <button onclick="filterCategory('accounts')" id="btn-accounts" class="filter-btn px-4 py-1.5 rounded-full bg-white text-stcNavy border border-stcNavy/15 hover:border-stcGold transition-all active:scale-95 whitespace-nowrap">
         Accounts
       </button>
-      <button onclick="filterCategory('drive')" id="btn-drive" class="filter-btn px-4 py-1.5 rounded-full bg-white text-stcNavy border border-stcNavy/15 hover:border-stcGold transition-all active:scale-95">
+      <button onclick="filterCategory('drive')" id="btn-drive" class="filter-btn px-4 py-1.5 rounded-full bg-white text-stcNavy border border-stcNavy/15 hover:border-stcGold transition-all active:scale-95 whitespace-nowrap">
         Drive
       </button>
-      <button onclick="filterCategory('forms')" id="btn-forms" class="filter-btn px-4 py-1.5 rounded-full bg-white text-stcNavy border border-stcNavy/15 hover:border-stcGold transition-all active:scale-95">
+      <button onclick="filterCategory('forms')" id="btn-forms" class="filter-btn px-4 py-1.5 rounded-full bg-white text-stcNavy border border-stcNavy/15 hover:border-stcGold transition-all active:scale-95 whitespace-nowrap">
         Forms
       </button>
-      <button onclick="filterCategory('cycle4')" id="btn-cycle4" class="filter-btn px-4 py-1.5 rounded-full bg-white text-stcNavy border border-stcNavy/15 hover:border-stcGold transition-all active:scale-95">
-        Cycle 4 Schedule
+      <button onclick="filterCategory('cycle4')" id="btn-cycle4" class="filter-btn px-4 py-1.5 rounded-full bg-white text-stcNavy border border-stcNavy/15 hover:border-stcGold transition-all active:scale-95 whitespace-nowrap">
+        Cycle 4
       </button>
-      <button onclick="filterCategory('contact')" id="btn-contact" class="filter-btn px-4 py-1.5 rounded-full bg-white text-stcNavy border border-stcNavy/15 hover:border-stcGold transition-all active:scale-95">
+      <button onclick="filterCategory('contact')" id="btn-contact" class="filter-btn px-4 py-1.5 rounded-full bg-white text-stcNavy border border-stcNavy/15 hover:border-stcGold transition-all active:scale-95 whitespace-nowrap">
         Contact
       </button>
     </div>
@@ -424,10 +424,10 @@
           <table class="w-full text-left text-xs text-stcNavy">
             <thead class="bg-stcNavy text-white uppercase text-[10px] font-heading tracking-wider">
               <tr>
-                <th scope="col" class="py-3 px-4">Rotation Month</th>
-                <th scope="col" class="py-3 px-4">Member Name</th>
-                <th scope="col" class="py-3 px-4 text-center">Status</th>
-                <th scope="col" class="py-3 px-4 text-right">Action</th>
+                <th scope="col" class="py-3 px-2 sm:px-4 whitespace-nowrap">Rotation Month</th>
+                <th scope="col" class="py-3 px-2 sm:px-4 whitespace-nowrap">Member Name</th>
+                <th scope="col" class="py-3 px-2 sm:px-4 text-center whitespace-nowrap">Status</th>
+                <th scope="col" class="py-3 px-2 sm:px-4 text-right whitespace-nowrap">Action</th>
               </tr>
             </thead>
             <tbody class="divide-y divide-stcNavy/5 font-medium" id="payout-table-body">
@@ -659,25 +659,25 @@
 
         if (isActive) {
           tr.innerHTML = `
-            <td class="py-3.5 px-4 font-bold text-stcGold">${item.monthStr}</td>
-            <td class="py-3.5 px-4 font-semibold text-stcNavy">${item.name} ${item.isSpecial ? '<span class="text-[9px] bg-amber-100 text-amber-900 border border-amber-300 font-bold px-1.5 py-0.5 rounded ml-1">Allocated to Allan</span>' : ''}</td>
-            <td class="py-3.5 px-4 text-center"><span class="px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-[10px] font-bold border border-emerald-300">Active Month</span></td>
-            <td class="py-3.5 px-4 text-right">
-              <button onclick="event.stopPropagation(); openPayoutModal('${item.monthStr}', '${item.name}', '${nextItem.name}', '${nextItem.monthStr}', ${item.isSpecial})" class="px-3 py-1 bg-stcNavy text-white text-[11px] hover:bg-stcGold transition-colors font-semibold rounded-md shadow-xs active:scale-95">
+            <td class="py-3 px-2 sm:px-4 font-bold text-stcGold whitespace-nowrap text-xs">${item.monthStr}</td>
+            <td class="py-3 px-2 sm:px-4 font-semibold text-stcNavy whitespace-nowrap text-xs">${item.name}</td>
+            <td class="py-3 px-2 sm:px-4 text-center whitespace-nowrap"><span class="px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-[9px] sm:text-[10px] font-bold border border-emerald-300 inline-block whitespace-nowrap">Active Month</span></td>
+            <td class="py-3 px-2 sm:px-4 text-right whitespace-nowrap">
+              <button onclick="event.stopPropagation(); openPayoutModal('${item.monthStr}', '${item.name}', '${nextItem.name}', '${nextItem.monthStr}', ${item.isSpecial})" class="px-2.5 py-1 bg-stcNavy text-white text-[10px] sm:text-[11px] hover:bg-stcGold transition-colors font-semibold rounded-md shadow-xs active:scale-95 whitespace-nowrap">
                 Notify
               </button>
             </td>
           `;
         } else {
           tr.innerHTML = `
-            <td class="py-3.5 px-4 ${item.isSpecial ? 'font-bold text-stcGold' : ''}">${item.monthStr}</td>
-            <td class="py-3.5 px-4 font-semibold">${item.name}</td>
-            <td class="py-3.5 px-4 text-center">
-              <span class="px-2.5 py-0.5 rounded-full ${item.isSpecial ? 'bg-amber-100 text-amber-900 border border-amber-300 font-bold' : 'bg-stcBeige text-stcNavy/70'} text-[10px]">
+            <td class="py-3 px-2 sm:px-4 ${item.isSpecial ? 'font-bold text-stcGold' : ''} whitespace-nowrap text-xs">${item.monthStr}</td>
+            <td class="py-3 px-2 sm:px-4 font-semibold whitespace-nowrap text-xs">${item.name}</td>
+            <td class="py-3 px-2 sm:px-4 text-center whitespace-nowrap">
+              <span class="px-2 py-0.5 rounded-full ${item.isSpecial ? 'bg-amber-100 text-amber-900 border border-amber-300 font-bold text-[9px] sm:text-[10px]' : 'bg-stcBeige text-stcNavy/70 text-[9px] sm:text-[10px]'} inline-block whitespace-nowrap">
                 ${item.isSpecial ? 'Allocated to Allan' : 'Scheduled'}
               </span>
             </td>
-            <td class="py-3.5 px-4 text-right text-stcNavy/40 text-[11px] font-mono">&mdash;</td>
+            <td class="py-3 px-2 sm:px-4 text-right text-stcNavy/40 text-xs font-mono whitespace-nowrap">&mdash;</td>
           `;
         }
         tbody.appendChild(tr);
