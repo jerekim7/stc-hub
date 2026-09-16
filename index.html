@@ -384,18 +384,18 @@
           </div>
         </a>
 
-        <!-- ROSCA CYCLE 4 COMMITMENT FORM (RESPONSIVE STACK LAYOUT FIX) -->
-        <div class="bg-white rounded-xl p-4.5 shadow-sm border border-stcNavy/10 flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:col-span-2 stc-interactive-card">
-          <div class="space-y-1">
-            <div class="flex flex-wrap items-center gap-2">
-              <h3 class="font-heading font-semibold text-sm text-stcNavy">
+        <!-- ROSCA CYCLE 4 COMMITMENT FORM -->
+        <div class="bg-white rounded-xl p-4 shadow-sm border border-stcNavy/10 flex items-center justify-between gap-3 sm:col-span-2 stc-interactive-card">
+          <div class="space-y-1 min-w-0">
+            <div class="flex flex-wrap items-center gap-1.5">
+              <h3 class="font-heading font-semibold text-xs sm:text-sm text-stcNavy">
                 ROSCA Cycle 4 Commitment Form
               </h3>
-              <span class="text-[9px] uppercase font-bold text-amber-900 bg-amber-100 border border-amber-300 px-2 py-0.5 rounded whitespace-nowrap">Password Protected</span>
+              <span class="text-[8px] sm:text-[9px] uppercase font-bold text-amber-900 bg-amber-100 border border-amber-300 px-1.5 py-0.5 rounded whitespace-nowrap">Password Protected</span>
             </div>
-            <p class="text-xs text-stcNavy/60">Requires member password provided via private channels</p>
+            <p class="text-[11px] sm:text-xs text-stcNavy/60 truncate">Requires member password provided via private channels</p>
           </div>
-          <button onclick="promptCommitmentDownload()" class="w-full sm:w-auto text-center px-4 py-2.5 sm:py-2 bg-stcNavy text-white text-xs font-semibold rounded-lg hover:bg-stcGold transition-colors shadow-xs active:scale-95 whitespace-nowrap">
+          <button onclick="promptCommitmentDownload()" class="shrink-0 px-3 py-1.5 bg-stcNavy text-white text-[11px] font-semibold rounded-lg hover:bg-stcGold transition-colors shadow-xs active:scale-95 whitespace-nowrap">
             Download PDF
           </button>
         </div>
@@ -557,19 +557,19 @@
             Member Authentication
           </span>
           <h3 class="font-heading font-bold text-base text-stcNavy pt-1">
-            Enter Form Password
+            Enter Form Passcode
           </h3>
         </div>
         <button onclick="closePasswordModal()" class="text-stcNavy/40 hover:text-stcNavy text-lg font-bold">&times;</button>
       </div>
       <p class="text-xs text-stcNavy/70">
-        Please enter the secure member password to decrypt and download the ROSCA Cycle 4 Commitment Form PDF.
+        Please enter the passcode provided in private channels to download the ROSCA Cycle 4 Commitment Form.
       </p>
-      <input type="password" id="form-password-input" placeholder="Member password" class="w-full px-3 py-2 text-xs border border-stcNavy/20 rounded-lg focus:outline-none focus:border-stcGold font-mono" />
-      <div id="password-error" class="text-[11px] text-red-600 hidden">Incorrect password. Please check your private channel credentials.</div>
+      <input type="password" id="form-password-input" placeholder="Enter passcode" class="w-full px-3 py-2 text-xs border border-stcNavy/20 rounded-lg focus:outline-none focus:border-stcGold font-mono" />
+      <div id="password-error" class="text-[11px] text-red-600 hidden">Incorrect passcode. Please check your member announcement channel.</div>
       <div class="flex justify-end space-x-2 pt-2">
         <button onclick="closePasswordModal()" class="px-3 py-1.5 text-xs font-semibold text-stcNavy/70 hover:text-stcNavy">Cancel</button>
-        <button onclick="verifyFormPassword()" class="px-4 py-1.5 bg-stcNavy text-white text-xs font-semibold rounded-lg hover:bg-stcGold transition-colors">Decrypt & Download</button>
+        <button onclick="verifyFormPassword()" class="px-4 py-1.5 bg-stcNavy text-white text-xs font-semibold rounded-lg hover:bg-stcGold transition-colors">Download PDF</button>
       </div>
     </div>
   </div>
@@ -791,12 +791,16 @@
       modal.classList.add('opacity-0', 'pointer-events-none');
     }
 
+    // VERIFY PASSCODE AND STREAM DIRECT PDF DOWNLOAD
     function verifyFormPassword() {
-      const pwd = document.getElementById('form-password-input').value;
-      if (pwd === "STC2026Members") {
+      const pwd = document.getElementById('form-password-input').value.trim();
+      
+      if (pwd === "STCCycle4" || pwd === "stccycle4") {
         closePasswordModal();
-        showToast("Access granted! Downloading secure form...");
-        window.open("https://drive.google.com/drive/folders/1lkhd_kA2FFl1r18N8p3LEHxcbcd9rlyj?usp=drive_link", "_blank");
+        showToast("Access granted! Downloading form...");
+        
+        // Direct Google Drive download stream (bypasses Google Drive web UI)
+        window.location.href = "https://drive.google.com/uc?export=download&id=16nqumtGesJgLqey-AofJDaZxI5w1YpR3";
       } else {
         document.getElementById('password-error').classList.remove('hidden');
       }
