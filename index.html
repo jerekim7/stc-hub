@@ -5,6 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex, nofollow" />
   <title>STC-Chama | Member Resource Hub</title>
+
+  <!-- HARDENED SECURITY HEADERS & PROTOCOLS -->
+  <meta http-equiv="Content-Security-Policy" content="
+    default-src 'self';
+    script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com;
+    style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+    font-src 'self' https://fonts.gstatic.com;
+    img-src 'self' data: https:;
+    connect-src 'self';
+    frame-ancestors 'none';
+    form-action 'self' https://docs.google.com https://bit.ly;
+    base-uri 'self';
+  ">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="X-Frame-Options" content="DENY">
+  <meta name="referrer" content="no-referrer" />
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -80,6 +96,22 @@
       transform: translateY(-1px) scale(0.99);
     }
 
+    /* Dynamic Row Highlight for Payout Table */
+    .payout-row {
+      transition: all 0.2s ease-in-out;
+      cursor: pointer;
+    }
+    .payout-row:hover {
+      background-color: rgba(176, 155, 121, 0.12) !important;
+    }
+    .payout-row.selected-row {
+      background-color: rgba(28, 39, 81, 0.08) !important;
+      border-left: 4px solid #B09B79;
+    }
+    .payout-row.special-row {
+      background-color: rgba(176, 155, 121, 0.05);
+    }
+
     /* Scroll-Triggered Reveal Initial States */
     .reveal-element {
       opacity: 0;
@@ -107,7 +139,7 @@
   <header class="w-full bg-stcNavy text-white py-7 px-4 shadow-md border-b-2 border-stcGold">
     <div class="max-w-3xl mx-auto space-y-2.5 reveal-element">
       <div class="flex justify-end">
-        <span class="inline-block px-3 py-1 bg-stcGold/20 border border-stcGold text-stcGold text-[10px] sm:text-xs font-semibold rounded-full tracking-wider uppercase">
+        <span class="inline-block px-3 py-1 bg-stcGold/20 border border-stcGold text-stcGold text-[10px] sm:text-xs font-semibold rounded-lg tracking-wider uppercase">
           Internal Member Hub
         </span>
       </div>
@@ -122,7 +154,7 @@
     </div>
   </header>
 
-  <!-- STICKY FILTER PILLS BAR WITH BACKDROP BLUR -->
+  <!-- STICKY FILTER PILLS BAR -->
   <nav id="sticky-nav" class="sticky top-0 z-40 bg-stcBeige/90 backdrop-blur-md border-b border-stcNavy/10 py-3 px-4 shadow-sm transition-all duration-300">
     <div class="max-w-3xl mx-auto flex items-center space-x-2 overflow-x-auto no-scrollbar text-xs font-semibold">
       <button onclick="filterCategory('all')" id="btn-all" class="filter-btn px-4 py-1.5 rounded-full bg-stcNavy text-white border border-stcNavy transition-all active:scale-95">
@@ -136,6 +168,9 @@
       </button>
       <button onclick="filterCategory('forms')" id="btn-forms" class="filter-btn px-4 py-1.5 rounded-full bg-white text-stcNavy border border-stcNavy/15 hover:border-stcGold transition-all active:scale-95">
         Forms
+      </button>
+      <button onclick="filterCategory('cycle4')" id="btn-cycle4" class="filter-btn px-4 py-1.5 rounded-full bg-white text-stcNavy border border-stcNavy/15 hover:border-stcGold transition-all active:scale-95">
+        Cycle 4 Schedule
       </button>
       <button onclick="filterCategory('contact')" id="btn-contact" class="filter-btn px-4 py-1.5 rounded-full bg-white text-stcNavy border border-stcNavy/15 hover:border-stcGold transition-all active:scale-95">
         Contact
@@ -261,7 +296,7 @@
       </div>
     </section>
 
-    <!-- SECTION 2: MASTER DIRECTORY HUB -->
+    <!-- SECTION 2: MASTER SHARED DRIVE -->
     <section id="section-drive" class="filter-section reveal-element space-y-4">
       <div class="border-b border-stcNavy/10 pb-2">
         <h2 class="font-heading text-lg sm:text-xl font-bold text-stcNavy tracking-tight">
@@ -349,21 +384,61 @@
           </div>
         </a>
 
-        <!-- ROSCA CYCLE 4 COMMITMENT (PENDING) -->
-        <div class="bg-white/60 rounded-xl p-4 border border-dashed border-stcNavy/20 flex justify-between items-center sm:col-span-2">
+        <!-- ROSCA CYCLE 4 COMMITMENT FORM (PASSWORD PROTECTED PDF) -->
+        <div class="bg-white rounded-xl p-4 shadow-sm border border-stcNavy/10 flex justify-between items-center sm:col-span-2 stc-interactive-card">
           <div>
-            <h3 class="font-heading font-semibold text-sm text-stcNavy/70">
-              ROSCA Cycle 4 Commitment Form
-            </h3>
-            <p class="text-xs text-stcNavy/50 mt-0.5">PDF download coming soon</p>
+            <div class="flex items-center space-x-2">
+              <h3 class="font-heading font-semibold text-sm text-stcNavy">
+                ROSCA Cycle 4 Commitment Form
+              </h3>
+              <span class="text-[9px] uppercase font-bold text-amber-900 bg-amber-100 border border-amber-300 px-2 py-0.5 rounded">Password Protected</span>
+            </div>
+            <p class="text-xs text-stcNavy/60 mt-0.5">Requires member password provided via private channels</p>
           </div>
-          <span class="text-[10px] uppercase font-bold text-stcGold bg-stcNavy/5 px-2 py-0.5 rounded">Pending</span>
+          <button onclick="promptCommitmentDownload()" class="px-3.5 py-1.5 bg-stcNavy text-white text-xs font-semibold rounded-lg hover:bg-stcGold transition-colors shadow-xs active:scale-95">
+            Download PDF
+          </button>
         </div>
 
       </div>
     </section>
 
-    <!-- SECTION 4: CONTACT & COLLABORATIONS -->
+    <!-- SECTION 4: ROSCA CYCLE 4 PAYOUT SCHEDULE -->
+    <section id="section-cycle4" class="filter-section hidden-section reveal-element space-y-4">
+      <div class="border-b border-stcNavy/10 pb-2 flex flex-col sm:flex-row sm:items-end justify-between gap-1.5">
+        <div>
+          <span class="inline-block text-[10px] font-bold uppercase tracking-wider text-stcGold bg-stcNavy px-2.5 py-0.5 rounded mb-1">
+            ROSCA Distribution Schedule
+          </span>
+          <h2 class="font-heading text-lg sm:text-xl font-bold text-stcNavy tracking-tight">
+            Cycle 4 Payout Schedule
+          </h2>
+        </div>
+        <span class="text-[11px] sm:text-xs font-medium text-stcNavy bg-stcGold/20 border border-stcGold/40 px-2.5 py-1 rounded w-fit">
+          Payouts processed on the 27th following member verification
+        </span>
+      </div>
+
+      <div class="bg-white rounded-xl shadow-sm border border-stcNavy/10 overflow-hidden">
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs text-stcNavy">
+            <thead class="bg-stcNavy text-white uppercase text-[10px] font-heading tracking-wider">
+              <tr>
+                <th scope="col" class="py-3 px-4">Rotation Month</th>
+                <th scope="col" class="py-3 px-4">Member Name</th>
+                <th scope="col" class="py-3 px-4 text-center">Status</th>
+                <th scope="col" class="py-3 px-4 text-right">Action</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-stcNavy/5 font-medium" id="payout-table-body">
+              <!-- Dynamically populated by live date script below -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 5: CONTACT & COLLABORATIONS -->
     <section id="section-contact" class="filter-section reveal-element bg-white rounded-xl p-6 shadow-sm border border-stcNavy/10 space-y-3 stc-interactive-card">
       <div>
         <h3 class="font-heading font-bold text-base sm:text-lg text-stcNavy">Get in Touch</h3>
@@ -373,7 +448,7 @@
       </div>
       <div class="flex flex-col sm:flex-row sm:items-center gap-3 pt-2 text-xs font-medium">
         
-        <!-- EMAIL BUTTON WITH SVG ICON -->
+        <!-- EMAIL BUTTON -->
         <a href="mailto:info.stcinvestmentgroup@gmail.com" class="inline-flex items-center space-x-2.5 text-stcNavy hover:text-stcGold transition-colors bg-stcBeige/50 px-3.5 py-2.5 rounded-lg border border-stcNavy/5 active:scale-95 group">
           <svg class="w-4 h-4 text-stcGold group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"></path>
@@ -381,7 +456,7 @@
           <span>info.stcinvestmentgroup@gmail.com</span>
         </a>
 
-        <!-- INSTAGRAM BUTTON WITH SVG ICON -->
+        <!-- INSTAGRAM BUTTON -->
         <a href="https://instagram.com/stcinvestmentgroup" target="_blank" rel="noopener noreferrer" class="inline-flex items-center space-x-2.5 text-stcNavy hover:text-stcGold transition-colors bg-stcBeige/50 px-3.5 py-2.5 rounded-lg border border-stcNavy/5 active:scale-95 group">
           <svg class="w-4 h-4 text-stcGold group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.162c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
@@ -398,7 +473,6 @@
   <footer class="w-full border-t border-stcNavy/10 pt-8 pb-6 px-4 bg-white/40 space-y-6">
     <div class="max-w-3xl mx-auto space-y-4">
       
-      <!-- LEFT-ALIGNED BRANDING & DISCLAIMER TEXT -->
       <div class="text-left space-y-1.5">
         <p class="font-heading font-bold text-xs text-stcNavy tracking-tight">
           STC-Chama &bull; More Than a Group.
@@ -408,10 +482,8 @@
         </p>
       </div>
 
-      <!-- DIVIDER -->
       <div class="border-t border-stcNavy/5 w-full"></div>
 
-      <!-- CENTERED COPYRIGHT NOTICE -->
       <div class="text-center">
         <p class="font-sans text-[11px] font-normal text-stcNavy/50 tracking-normal">
           &copy; STC Investment Group. All rights reserved.
@@ -420,6 +492,87 @@
 
     </div>
   </footer>
+
+  <!-- ACTION SELECTION MODAL -->
+  <div id="payout-modal" class="fixed inset-0 bg-stcNavy/60 backdrop-blur-xs z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-200">
+    <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-xl border border-stcNavy/10 space-y-5 transform scale-95 transition-transform duration-200" id="payout-modal-card">
+      <div class="flex items-start justify-between border-b border-stcNavy/10 pb-3">
+        <div>
+          <span class="text-[10px] font-bold uppercase tracking-wider text-stcGold bg-stcNavy px-2.5 py-0.5 rounded">
+            Head of Payouts Utility
+          </span>
+          <h3 class="font-heading font-bold text-lg text-stcNavy pt-1" id="modal-title">
+            Rotation
+          </h3>
+        </div>
+        <button onclick="closePayoutModal()" class="text-stcNavy/40 hover:text-stcNavy text-lg font-bold">&times;</button>
+      </div>
+
+      <p class="text-xs text-stcNavy/70 leading-relaxed">
+        Select the communication action you want to generate for <strong id="modal-member-name" class="text-stcNavy">Member</strong>:
+      </p>
+
+      <div class="space-y-3">
+        <!-- ACTION 1: PRE-PAYOUT 1-ON-1 -->
+        <button onclick="executePrePayoutAction()" class="w-full text-left p-3.5 bg-stcBeige/40 hover:bg-stcBeige rounded-xl border border-stcNavy/10 transition-all flex items-center space-x-3 group">
+          <div class="p-2 bg-stcNavy text-stcGold rounded-lg group-hover:scale-105 transition-transform">
+            💬
+          </div>
+          <div>
+            <h4 class="font-heading font-semibold text-xs text-stcNavy group-hover:text-stcGold transition-colors">
+              Send Pre-Payout Reminder (1-on-1)
+            </h4>
+            <p class="text-[11px] text-stcNavy/60">Verification, M-Pesa check & STC Financial Goals Tracker prompt</p>
+          </div>
+        </button>
+
+        <!-- ACTION 2: POST-PAYOUT GROUP BROADCAST -->
+        <button onclick="executePostPayoutAction()" class="w-full text-left p-3.5 bg-stcBeige/40 hover:bg-stcBeige rounded-xl border border-stcNavy/10 transition-all flex items-center space-x-3 group">
+          <div class="p-2 bg-stcNavy text-stcGold rounded-lg group-hover:scale-105 transition-transform">
+            📢
+          </div>
+          <div>
+            <h4 class="font-heading font-semibold text-xs text-stcNavy group-hover:text-stcGold transition-colors">
+              Copy Post-Payout Announcement
+            </h4>
+            <p class="text-[11px] text-stcNavy/60">Dispatched confirmation & Next Up prompt for WhatsApp Group</p>
+          </div>
+        </button>
+      </div>
+
+      <div class="pt-2 text-right">
+        <button onclick="closePayoutModal()" class="px-4 py-1.5 text-xs font-semibold text-stcNavy/70 hover:text-stcNavy">
+          Cancel
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- PASSWORD PROMPT MODAL FOR SECURE FORM -->
+  <div id="password-modal" class="fixed inset-0 bg-stcNavy/60 backdrop-blur-xs z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-200">
+    <div class="bg-white rounded-2xl max-w-sm w-full p-6 shadow-xl border border-stcNavy/10 space-y-4 transform scale-95 transition-transform duration-200" id="password-modal-card">
+      <div class="flex items-start justify-between border-b border-stcNavy/10 pb-3">
+        <div>
+          <span class="text-[10px] font-bold uppercase tracking-wider text-stcGold bg-stcNavy px-2.5 py-0.5 rounded">
+            Member Authentication
+          </span>
+          <h3 class="font-heading font-bold text-base text-stcNavy pt-1">
+            Enter Form Password
+          </h3>
+        </div>
+        <button onclick="closePasswordModal()" class="text-stcNavy/40 hover:text-stcNavy text-lg font-bold">&times;</button>
+      </div>
+      <p class="text-xs text-stcNavy/70">
+        Please enter the secure member password to decrypt and download the ROSCA Cycle 4 Commitment Form PDF.
+      </p>
+      <input type="password" id="form-password-input" placeholder="Member password" class="w-full px-3 py-2 text-xs border border-stcNavy/20 rounded-lg focus:outline-none focus:border-stcGold font-mono" />
+      <div id="password-error" class="text-[11px] text-red-600 hidden">Incorrect password. Please check your private channel credentials.</div>
+      <div class="flex justify-end space-x-2 pt-2">
+        <button onclick="closePasswordModal()" class="px-3 py-1.5 text-xs font-semibold text-stcNavy/70 hover:text-stcNavy">Cancel</button>
+        <button onclick="verifyFormPassword()" class="px-4 py-1.5 bg-stcNavy text-white text-xs font-semibold rounded-lg hover:bg-stcGold transition-colors">Decrypt & Download</button>
+      </div>
+    </div>
+  </div>
 
   <!-- DYNAMIC TOAST NOTIFICATION CONTAINER -->
   <div id="toast-container" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 pointer-events-none transition-all duration-300 opacity-0 translate-y-4">
@@ -431,13 +584,112 @@
 
   <script>
     let toastTimeout;
+    let currentModalData = {};
 
-    // 1. Intersection Observer for Smooth Reveal Animations on Scroll
-    const observerOptions = {
-      root: null,
-      threshold: 0.1
-    };
+    // ROSCA Cycle 4 Master Schedule Array
+    const payoutSchedule = [
+      { monthStr: "Sep 2026", year: 2026, monthIndex: 8, name: "Darren Tanui", isSpecial: false },
+      { monthStr: "Oct 2026", year: 2026, monthIndex: 9, name: "Ryan Ngetich", isSpecial: false },
+      { monthStr: "Nov 2026", year: 2026, monthIndex: 10, name: "Joshua Rebo", isSpecial: false },
+      { monthStr: "Dec 2026", year: 2026, monthIndex: 11, name: "Allan Mwiti", isSpecial: false },
+      { monthStr: "Jan 2027", year: 2027, monthIndex: 0, name: "Asaph Kariuki", isSpecial: false },
+      { monthStr: "Feb 2027", year: 2027, monthIndex: 1, name: "Carlos Mutua", isSpecial: false },
+      { monthStr: "Mar 2027", year: 2027, monthIndex: 2, name: "Michael Trevis", isSpecial: false },
+      { monthStr: "Apr 2027", year: 2027, monthIndex: 3, name: "Emmanuel Mbatia", isSpecial: false },
+      { monthStr: "May 2027", year: 2027, monthIndex: 4, name: "Kipleting Keino", isSpecial: false },
+      { monthStr: "Jun 2027", year: 2027, monthIndex: 5, name: "Sammy Kimaiyo", isSpecial: true, note: "Allocated to Allan" },
+      { monthStr: "Jul 2027", year: 2027, monthIndex: 6, name: "Chris Gitau", isSpecial: false },
+      { monthStr: "Aug 2027", year: 2027, monthIndex: 7, name: "Jeremy Kimingiri", isSpecial: false },
+      { monthStr: "Sep 2027", year: 2027, monthIndex: 8, name: "Michael Kiprop", isSpecial: false }
+    ];
 
+    // Determine Active Row Based on Live Device Date (Shifts on the 28th)
+    function calculateActiveIndex() {
+      const now = new Date();
+      const currentYear = now.getFullYear();
+      const currentMonth = now.getMonth(); // 0-11
+      const currentDate = now.getDate();
+
+      let targetYear = currentYear;
+      let targetMonth = currentMonth;
+      if (currentDate >= 28) {
+        targetMonth += 1;
+        if (targetMonth > 11) {
+          targetMonth = 0;
+          targetYear += 1;
+        }
+      }
+
+      let index = payoutSchedule.findIndex(item => item.year === targetYear && item.monthIndex === targetMonth);
+      
+      if (index === -1) {
+        if (currentYear < payoutSchedule[0].year || (currentYear === payoutSchedule[0].year && currentMonth < payoutSchedule[0].monthIndex)) {
+          index = 0;
+        } else {
+          index = payoutSchedule.length - 1;
+        }
+      }
+      return index;
+    }
+
+    // Render Table Dynamically with Selection Animation & Conditional Click Action
+    function renderPayoutTable() {
+      const activeIndex = calculateActiveIndex();
+      const tbody = document.getElementById('payout-table-body');
+      tbody.innerHTML = '';
+
+      payoutSchedule.forEach((item, idx) => {
+        const isActive = (idx === activeIndex);
+        const nextItem = payoutSchedule[idx + 1] ? payoutSchedule[idx + 1] : { monthStr: "Next Cycle", name: "TBD" };
+
+        const tr = document.createElement('tr');
+        tr.className = `payout-row ${isActive ? 'bg-emerald-50/55 selected-row' : 'opacity-85'} ${item.isSpecial ? 'special-row' : ''}`;
+
+        tr.onclick = () => {
+          document.querySelectorAll('.payout-row').forEach(r => r.classList.remove('ring-2', 'ring-stcGold'));
+          tr.classList.add('ring-2', 'ring-stcGold');
+          setTimeout(() => tr.classList.remove('ring-2', 'ring-stcGold'), 600);
+
+          if (isActive) {
+            openPayoutModal(item.monthStr, item.name, nextItem.name, nextItem.monthStr, item.isSpecial);
+          } else {
+            showToast(`Selected: ${item.monthStr} — ${item.name}`);
+          }
+        };
+
+        if (isActive) {
+          tr.innerHTML = `
+            <td class="py-3.5 px-4 font-bold text-stcGold">${item.monthStr}</td>
+            <td class="py-3.5 px-4 font-semibold text-stcNavy">${item.name} ${item.isSpecial ? '<span class="text-[9px] bg-amber-100 text-amber-900 border border-amber-300 font-bold px-1.5 py-0.5 rounded ml-1">Allocated to Allan</span>' : ''}</td>
+            <td class="py-3.5 px-4 text-center"><span class="px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-[10px] font-bold border border-emerald-300">Active Month</span></td>
+            <td class="py-3.5 px-4 text-right">
+              <button onclick="event.stopPropagation(); openPayoutModal('${item.monthStr}', '${item.name}', '${nextItem.name}', '${nextItem.monthStr}', ${item.isSpecial})" class="px-3 py-1 bg-stcNavy text-white text-[11px] hover:bg-stcGold transition-colors font-semibold rounded-md shadow-xs active:scale-95">
+                Notify
+              </button>
+            </td>
+          `;
+        } else {
+          tr.innerHTML = `
+            <td class="py-3.5 px-4 ${item.isSpecial ? 'font-bold text-stcGold' : ''}">${item.monthStr}</td>
+            <td class="py-3.5 px-4 font-semibold">${item.name}</td>
+            <td class="py-3.5 px-4 text-center">
+              <span class="px-2.5 py-0.5 rounded-full ${item.isSpecial ? 'bg-amber-100 text-amber-900 border border-amber-300 font-bold' : 'bg-stcBeige text-stcNavy/70'} text-[10px]">
+                ${item.isSpecial ? 'Allocated to Allan' : 'Scheduled'}
+              </span>
+            </td>
+            <td class="py-3.5 px-4 text-right text-stcNavy/40 text-[11px] font-mono">&mdash;</td>
+          `;
+        }
+        tbody.appendChild(tr);
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      renderPayoutTable();
+    });
+
+    // Intersection Observer for Smooth Reveal Animations on Scroll
+    const observerOptions = { root: null, threshold: 0.1 };
     const revealObserver = new IntersectionObserver((entries, observer) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -451,7 +703,7 @@
       revealObserver.observe(el);
     });
 
-    // 2. Sticky Nav Elevation Effect on Scroll
+    // Sticky Nav Elevation Effect on Scroll
     const stickyNav = document.getElementById('sticky-nav');
     window.addEventListener('scroll', () => {
       if (window.scrollY > 20) {
@@ -463,17 +715,14 @@
       }
     });
 
-    // 3. Helper Functions
+    // Helper Functions
     function copyToClipboard(text, label, cardId) {
       navigator.clipboard.writeText(text).then(() => {
         showToast(`Copied ${label}: ${text}`);
-
         const card = document.getElementById(cardId);
         if (card) {
           card.classList.add('card-glow');
-          setTimeout(() => {
-            card.classList.remove('card-glow');
-          }, 1500);
+          setTimeout(() => card.classList.remove('card-glow'), 1500);
         }
       });
     }
@@ -482,7 +731,7 @@
       const container = document.getElementById('toast-container');
       const messageEl = document.getElementById('toast-message');
 
-      messageEl.innerText = message;
+      messageEl.textContent = message;
       container.classList.remove('opacity-0', 'translate-y-4', 'pointer-events-none');
       container.classList.add('opacity-100', 'translate-y-0');
 
@@ -495,16 +744,91 @@
 
     function notifyFundManager(accountName, paybill, accountNo) {
       const message = `Hi Fund Manager, I've completed my payment for *${accountName}*.\n\n*Details:*\n- Paybill: ${paybill}\n- Account No: ${accountNo}\n\nAttaching payment receipt below:`;
-      const encodedMessage = encodeURIComponent(message);
+      window.open(`https://wa.me/?text=${encodeURIComponent(message)}`, '_blank');
+    }
+
+    // Modal Control & Messaging Logic
+    function openPayoutModal(month, member, nextMember, nextMonth, isSammySlot) {
+      currentModalData = { month, member, nextMember, nextMonth, isSammySlot };
       
-      window.open(`https://wa.me/?text=${encodedMessage}`, '_blank');
+      document.getElementById('modal-title').textContent = `${month} Rotation (${member})`;
+      document.getElementById('modal-member-name').textContent = member;
+
+      const modal = document.getElementById('payout-modal');
+      const card = document.getElementById('payout-modal-card');
+      
+      modal.classList.remove('opacity-0', 'pointer-events-none');
+      card.classList.remove('scale-95');
+      card.classList.add('scale-100');
+    }
+
+    function closePayoutModal() {
+      const modal = document.getElementById('payout-modal');
+      const card = document.getElementById('payout-modal-card');
+
+      card.classList.remove('scale-100');
+      card.classList.add('scale-95');
+      modal.classList.add('opacity-0', 'pointer-events-none');
+    }
+
+    function promptCommitmentDownload() {
+      const modal = document.getElementById('password-modal');
+      const card = document.getElementById('password-modal-card');
+      document.getElementById('form-password-input').value = '';
+      document.getElementById('password-error').classList.add('hidden');
+
+      modal.classList.remove('opacity-0', 'pointer-events-none');
+      card.classList.remove('scale-95');
+      card.classList.add('scale-100');
+    }
+
+    function closePasswordModal() {
+      const modal = document.getElementById('password-modal');
+      const card = document.getElementById('password-modal-card');
+
+      card.classList.remove('scale-100');
+      card.classList.add('scale-95');
+      modal.classList.add('opacity-0', 'pointer-events-none');
+    }
+
+    function verifyFormPassword() {
+      const pwd = document.getElementById('form-password-input').value;
+      if (pwd === "STC2026Members") {
+        closePasswordModal();
+        showToast("Access granted! Downloading secure form...");
+        window.open("https://drive.google.com/drive/folders/1lkhd_kA2FFl1r18N8p3LEHxcbcd9rlyj?usp=drive_link", "_blank");
+      } else {
+        document.getElementById('password-error').classList.remove('hidden');
+      }
+    }
+
+    function executePrePayoutAction() {
+      const { month, member, isSammySlot, nextMember } = currentModalData;
+      
+      let message = `Hi ${member} 👋\n\nYou are scheduled for the *ROSCA Cycle 4 payout* for *${month}*.\n\n*1. Payout Destination Confirmation:*\nPlease confirm if your *M-Pesa number* is still your preferred payout channel, or specify your updated bank/mobile details.\n\n*2. Payout Planning Tool:*\nBefore your payout date, check out the *STC Financial Goals Tracker* in our Master Drive (Vault > Personal Finance Tools). The entire tool is fully customizable. You can map out your allocation across needs, wants, and savings, then use the dedicated savings goals tab to direct your investments and track everything in one place.\n\nLet us know if you have any questions ahead of the cycle date!`;
+      
+      if (isSammySlot) {
+        message = `Notice for ROSCA Cycle 4 - Jun 2027 (Sammy Kimaiyo's Slot):\nAllan Mwiti is contributing on Sammy's behalf for this cycle. The payout will be received by Allan Mwiti unless Sammy opts back in before this rotation.`;
+      }
+
+      closePayoutModal();
+      window.open(`https://wa.me/?text=${encodeURIComponent(message)}`, '_blank');
+    }
+
+    function executePostPayoutAction() {
+      const { month, member, nextMember, nextMonth } = currentModalData;
+      const message = `📢 *STC-Chama ROSCA Cycle 4 Update*\n\nThe payout for *${month}* has been successfully dispatched to *${member}*! 🤝\n\n🗓️ *Next Up for ${nextMonth}:* *${nextMember}*`;
+
+      closePayoutModal();
+      navigator.clipboard.writeText(message).then(() => {
+        showToast("Post-Payout Update copied to clipboard!");
+      });
     }
 
     function filterCategory(category) {
       const sections = document.querySelectorAll('.filter-section');
       const buttons = document.querySelectorAll('.filter-btn');
 
-      // Update Active Button Styling
       buttons.forEach(btn => {
         btn.classList.remove('bg-stcNavy', 'text-white');
         btn.classList.add('bg-white', 'text-stcNavy');
@@ -516,11 +840,16 @@
         activeBtn.classList.add('bg-stcNavy', 'text-white');
       }
 
-      // Filter Visibility
       sections.forEach(sec => {
-        if (category === 'all' || sec.id === `section-${category}`) {
+        if (category === 'all') {
+          if (sec.id === 'section-cycle4') {
+            sec.classList.add('hidden-section');
+          } else {
+            sec.classList.remove('hidden-section');
+            setTimeout(() => sec.classList.add('revealed'), 50);
+          }
+        } else if (sec.id === `section-${category}`) {
           sec.classList.remove('hidden-section');
-          // Re-trigger reveal animation if hidden section is made visible
           setTimeout(() => sec.classList.add('revealed'), 50);
         } else {
           sec.classList.add('hidden-section');
