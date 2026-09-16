@@ -432,7 +432,15 @@
 
         <form onsubmit="event.preventDefault(); verifyCycle4TabPassword();" class="space-y-3 pt-2 max-w-xs mx-auto">
           <div class="space-y-1">
-            <input type="password" id="cycle4-tab-passcode-input" placeholder="Enter member passphrase" class="w-full px-3.5 py-2.5 text-xs border border-stcNavy/20 rounded-xl focus:outline-none focus:border-stcGold font-mono text-center shadow-xs transition-colors" />
+            <div class="relative w-full">
+              <input type="password" id="cycle4-tab-passcode-input" placeholder="Enter member passphrase" class="w-full pl-3.5 pr-10 py-2.5 text-xs border border-stcNavy/20 rounded-xl focus:outline-none focus:border-stcGold font-mono text-center shadow-xs transition-colors" />
+              <button type="button" onclick="togglePasswordVisibility('cycle4-tab-passcode-input', this)" aria-label="Toggle password visibility" class="absolute right-3 top-1/2 -translate-y-1/2 text-stcNavy/40 hover:text-stcNavy focus:outline-none transition-colors p-1">
+                <svg class="w-4 h-4 eye-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                </svg>
+              </button>
+            </div>
             <div id="cycle4-tab-error" class="text-[11px] text-red-600 hidden font-medium pt-1">Incorrect passphrase. Please try again.</div>
           </div>
           <button type="submit" id="cycle4-submit-btn" class="w-full py-2.5 bg-stcNavy text-white text-xs font-semibold rounded-xl hover:bg-stcGold transition-colors shadow-xs active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed">
@@ -641,7 +649,15 @@
       <p class="text-xs text-stcNavy/70">
         Please enter the passcode provided in private channels to download the ROSCA Cycle 4 Commitment Form.
       </p>
-      <input type="password" id="form-password-input" placeholder="Enter passcode" class="w-full px-3 py-2 text-xs border border-stcNavy/20 rounded-lg focus:outline-none focus:border-stcGold font-mono" />
+      <div class="relative w-full">
+        <input type="password" id="form-password-input" placeholder="Enter passcode" class="w-full pl-3 pr-10 py-2 text-xs border border-stcNavy/20 rounded-lg focus:outline-none focus:border-stcGold font-mono" />
+        <button type="button" onclick="togglePasswordVisibility('form-password-input', this)" aria-label="Toggle password visibility" class="absolute right-2.5 top-1/2 -translate-y-1/2 text-stcNavy/40 hover:text-stcNavy focus:outline-none transition-colors p-1">
+          <svg class="w-4 h-4 eye-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+          </svg>
+        </button>
+      </div>
       <div id="password-error" class="text-[11px] text-red-600 hidden">Incorrect passcode. Please check your member announcement channel.</div>
       <div class="flex justify-end space-x-2 pt-2">
         <button onclick="closePasswordModal()" class="px-3 py-1.5 text-xs font-semibold text-stcNavy/70 hover:text-stcNavy">Cancel</button>
@@ -674,6 +690,42 @@
     // Separate Dedicated Passphrases
     const CYCLE4_TAB_PASSPHRASE = "Luke16:10FaithfulinLittleFaithfulinMuch!";
     const COMMITMENT_FORM_PASSPHRASE = "stccycle4";
+
+    // Reusable Password Visibility Toggle SVG Templates
+    const EYE_OPEN_SVG = `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>`;
+    const EYE_CLOSED_SVG = `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l18 18"></path>`;
+
+    function togglePasswordVisibility(inputId, btn) {
+      const input = document.getElementById(inputId);
+      const svg = btn.querySelector('.eye-icon');
+      if (!input || !svg) return;
+
+      if (input.type === 'password') {
+        input.type = 'text';
+        svg.innerHTML = EYE_CLOSED_SVG;
+        btn.classList.add('text-stcGold');
+        btn.classList.remove('text-stcNavy/40');
+      } else {
+        input.type = 'password';
+        svg.innerHTML = EYE_OPEN_SVG;
+        btn.classList.remove('text-stcGold');
+        btn.classList.add('text-stcNavy/40');
+      }
+    }
+
+    function resetPasswordInput(inputId) {
+      const input = document.getElementById(inputId);
+      if (!input) return;
+      input.type = 'password';
+      input.value = '';
+      const btn = input.parentElement.querySelector('button');
+      if (btn) {
+        const svg = btn.querySelector('.eye-icon');
+        if (svg) svg.innerHTML = EYE_OPEN_SVG;
+        btn.classList.remove('text-stcGold');
+        btn.classList.add('text-stcNavy/40');
+      }
+    }
 
     // ROSCA Cycle 4 Master Schedule Array
     const payoutSchedule = [
@@ -857,7 +909,7 @@
 
       document.getElementById('cycle4-protected-content').classList.add('hidden');
       document.getElementById('cycle4-auth-card').classList.remove('hidden');
-      document.getElementById('cycle4-tab-passcode-input').value = '';
+      resetPasswordInput('cycle4-tab-passcode-input');
       document.getElementById('cycle4-tab-error').classList.add('hidden');
       document.getElementById('session-warning-badge').classList.add('hidden');
 
@@ -1039,7 +1091,7 @@
     function promptCommitmentDownload() {
       const modal = document.getElementById('password-modal');
       const card = document.getElementById('password-modal-card');
-      document.getElementById('form-password-input').value = '';
+      resetPasswordInput('form-password-input');
       document.getElementById('password-error').classList.add('hidden');
 
       modal.classList.remove('opacity-0', 'pointer-events-none');
@@ -1054,6 +1106,7 @@
       card.classList.remove('scale-100');
       card.classList.add('scale-95');
       modal.classList.add('opacity-0', 'pointer-events-none');
+      resetPasswordInput('form-password-input');
     }
 
     // VERIFY PASSCODE FOR COMMITMENT FORM ONLY AND STREAM PDF DOWNLOAD
