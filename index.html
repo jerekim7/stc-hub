@@ -365,7 +365,7 @@
         </a>
 
         <!-- MERCHANDISE FORM -->
-        <a href="https://bit.ly/STCLA27" target="_blank" rel="noopener noreferrer" class="bg-white rounded-xl p-4 shadow-sm border border-stcNavy/10 stc-interactive-card hover:border-stcGold block group">
+        <a href="https://bit.ly/27STC" target="_blank" rel="noopener noreferrer" class="bg-white rounded-xl p-4 shadow-sm border border-stcNavy/10 stc-interactive-card hover:border-stcGold block group">
           <div class="flex justify-between items-center">
             <div>
               <h3 class="font-heading font-semibold text-sm text-stcNavy group-hover:text-stcGold transition-colors">
@@ -409,39 +409,90 @@
       </div>
     </section>
 
-    <!-- SECTION 4: ROSCA CYCLE 4 PAYOUT SCHEDULE -->
+    <!-- SECTION 4: ROSCA CYCLE 4 PAYOUT SCHEDULE (AUTH GATED + TIMEOUT & RATE LIMITED) -->
     <section id="section-cycle4" class="filter-section hidden-section reveal-element space-y-4">
-      <div class="border-b border-stcNavy/10 pb-2 flex flex-col sm:flex-row sm:items-end justify-between gap-1.5">
-        <div>
-          <span class="inline-block text-[10px] font-bold uppercase tracking-wider text-stcGold bg-stcNavy px-2.5 py-0.5 rounded mb-1">
-            ROSCA Distribution Schedule
-          </span>
-          <h2 class="font-heading text-lg sm:text-xl font-bold text-stcNavy tracking-tight">
-            Cycle 4 Payout Schedule
-          </h2>
+      
+      <!-- AUTH LOCK CARD -->
+      <div id="cycle4-auth-card" class="bg-white rounded-2xl p-6 sm:p-8 shadow-sm border border-stcNavy/10 space-y-5 text-center max-w-lg mx-auto">
+        <div class="inline-flex p-3 bg-stcNavy/5 text-stcNavy rounded-full border border-stcNavy/10 mb-1">
+          <svg class="w-6 h-6 text-stcGold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
         </div>
-        <span class="text-[11px] sm:text-xs font-medium text-stcNavy bg-stcGold/20 border border-stcGold/40 px-2.5 py-1 rounded w-fit">
-          Payouts processed on the 27th following member verification
-        </span>
+        
+        <div class="space-y-2">
+          <span class="inline-block text-[10px] font-bold uppercase tracking-wider text-stcGold bg-stcNavy px-2.5 py-0.5 rounded">
+            Restricted Access &bull; STC Active Members
+          </span>
+          <h2 class="font-heading text-xl font-bold text-stcNavy tracking-tight">
+            ROSCA Cycle 4 Distribution Schedule
+          </h2>
+          <p class="text-xs text-stcNavy/70 leading-relaxed max-w-sm mx-auto">
+            This section contains internal rotation timelines, payout schedules, and operational member utilities for STC-Chama ROSCA Cycle 4. To protect member privacy and financial discretion, access is restricted to verified members.
+          </p>
+        </div>
+
+        <form onsubmit="event.preventDefault(); verifyCycle4TabPassword();" class="space-y-3 pt-2 max-w-xs mx-auto">
+          <div class="space-y-1">
+            <input type="password" id="cycle4-tab-passcode-input" placeholder="Enter member passphrase" class="w-full px-3.5 py-2.5 text-xs border border-stcNavy/20 rounded-xl focus:outline-none focus:border-stcGold font-mono text-center shadow-xs transition-colors" />
+            <div id="cycle4-tab-error" class="text-[11px] text-red-600 hidden font-medium pt-1">Incorrect passphrase. Please try again.</div>
+          </div>
+          <button type="submit" id="cycle4-submit-btn" class="w-full py-2.5 bg-stcNavy text-white text-xs font-semibold rounded-xl hover:bg-stcGold transition-colors shadow-xs active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed">
+            Unlock Schedule
+          </button>
+        </form>
+
+        <div class="border-t border-stcNavy/10 pt-4">
+          <p class="text-[11px] text-stcNavy/50 leading-relaxed">
+            Authorized members can find the passcode in our official announcement channel. Need assistance? Contact the STC Admin team.
+          </p>
+        </div>
       </div>
 
-      <div class="bg-white rounded-xl shadow-sm border border-stcNavy/10 overflow-hidden">
-        <div class="overflow-x-auto">
-          <table class="w-full text-left text-xs text-stcNavy">
-            <thead class="bg-stcNavy text-white uppercase text-[10px] font-heading tracking-wider">
-              <tr>
-                <th scope="col" class="py-3 px-2 sm:px-4 whitespace-nowrap">Rotation Month</th>
-                <th scope="col" class="py-3 px-2 sm:px-4 whitespace-nowrap">Member Name</th>
-                <th scope="col" class="py-3 px-2 sm:px-4 text-center whitespace-nowrap">Status</th>
-                <th scope="col" class="py-3 px-2 sm:px-4 text-right whitespace-nowrap">Action</th>
-              </tr>
-            </thead>
-            <tbody class="divide-y divide-stcNavy/5 font-medium" id="payout-table-body">
-              <!-- Dynamically populated by live date script below -->
-            </tbody>
-          </table>
+      <!-- PROTECTED PAYOUT CONTENT -->
+      <div id="cycle4-protected-content" class="hidden space-y-4">
+        <div class="border-b border-stcNavy/10 pb-2 flex flex-col sm:flex-row sm:items-end justify-between gap-1.5">
+          <div>
+            <div class="flex items-center space-x-2">
+              <span class="inline-block text-[10px] font-bold uppercase tracking-wider text-stcGold bg-stcNavy px-2.5 py-0.5 rounded mb-1">
+                ROSCA Distribution Schedule
+              </span>
+              <button onclick="lockCycle4Tab(true)" class="text-[10px] text-stcNavy/50 hover:text-red-600 transition-colors underline pb-1 font-medium">
+                (Lock Tab)
+              </button>
+            </div>
+            <div class="flex items-center space-x-3">
+              <h2 class="font-heading text-lg sm:text-xl font-bold text-stcNavy tracking-tight">
+                Cycle 4 Payout Schedule
+              </h2>
+              <!-- HEADER TIMEOUT BADGE (Appears at 1 min remaining) -->
+              <span id="session-warning-badge" class="hidden text-[10px] font-mono text-amber-800 bg-amber-100 border border-amber-300 px-2 py-0.5 rounded-full font-bold animate-pulse">
+                ⏱️ Auto-locking in <span id="session-badge-timer">01:00</span>
+              </span>
+            </div>
+          </div>
+          <span class="text-[11px] sm:text-xs font-medium text-stcNavy bg-stcGold/20 border border-stcGold/40 px-2.5 py-1 rounded w-fit">
+            Payouts processed on the 27th following member verification
+          </span>
+        </div>
+
+        <div class="bg-white rounded-xl shadow-sm border border-stcNavy/10 overflow-hidden">
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs text-stcNavy">
+              <thead class="bg-stcNavy text-white uppercase text-[10px] font-heading tracking-wider">
+                <tr>
+                  <th scope="col" class="py-3 px-2 sm:px-4 whitespace-nowrap">Rotation Month</th>
+                  <th scope="col" class="py-3 px-2 sm:px-4 whitespace-nowrap">Member Name</th>
+                  <th scope="col" class="py-3 px-2 sm:px-4 text-center whitespace-nowrap">Status</th>
+                  <th scope="col" class="py-3 px-2 sm:px-4 text-right whitespace-nowrap">Action</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-stcNavy/5 font-medium" id="payout-table-body">
+                <!-- Dynamically populated -->
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
+
     </section>
 
     <!-- SECTION 5: CONTACT & COLLABORATIONS -->
@@ -498,6 +549,25 @@
 
     </div>
   </footer>
+
+  <!-- SESSION EXPIRATION INTERACTIVE MODAL (30 Sec Warning) -->
+  <div id="session-modal" class="fixed inset-0 bg-stcNavy/60 backdrop-blur-xs z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-200">
+    <div class="bg-white rounded-2xl max-w-sm w-full p-6 shadow-xl border border-stcNavy/10 space-y-4 text-center transform scale-95 transition-transform duration-200" id="session-modal-card">
+      <div class="inline-flex p-3 bg-amber-50 text-amber-800 rounded-full border border-amber-200">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+      </div>
+      <div class="space-y-1">
+        <h3 class="font-heading font-bold text-base text-stcNavy">Session Expiring Soon</h3>
+        <p class="text-xs text-stcNavy/70">
+          Your Cycle 4 viewing session will auto-lock in <strong id="session-modal-countdown" class="text-amber-800 font-mono">00:30</strong> due to inactivity.
+        </p>
+      </div>
+      <div class="pt-2 flex justify-center space-x-2">
+        <button onclick="lockCycle4Tab(true)" class="px-3.5 py-2 text-xs font-semibold text-stcNavy/70 hover:text-stcNavy">Lock Now</button>
+        <button onclick="resetIdleTimer()" class="px-4 py-2 bg-stcNavy text-white text-xs font-semibold rounded-xl hover:bg-stcGold transition-colors shadow-xs active:scale-95">Extend Session</button>
+      </div>
+    </div>
+  </div>
 
   <!-- ACTION SELECTION MODAL -->
   <div id="payout-modal" class="fixed inset-0 bg-stcNavy/60 backdrop-blur-xs z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-200">
@@ -592,6 +662,19 @@
     let toastTimeout;
     let currentModalData = {};
 
+    // Cycle 4 Script State & Rate Limiting Controls
+    let failedAttempts = 0;
+    let totalFailedCounter = 0;
+    let lockoutTimer = null;
+    let idleTimer = null;
+    let countdownInterval = null;
+    const SESSION_DURATION = 300; // 5 Minutes in seconds
+    let remainingSessionTime = SESSION_DURATION;
+
+    // Separate Dedicated Passphrases
+    const CYCLE4_TAB_PASSPHRASE = "Luke16:10FaithfulinLittleFaithfulinMuch!";
+    const COMMITMENT_FORM_PASSPHRASE = "stccycle4";
+
     // ROSCA Cycle 4 Master Schedule Array
     const payoutSchedule = [
       { monthStr: "Sep 2026", year: 2026, monthIndex: 8, name: "Darren Tanui", isSpecial: false },
@@ -613,7 +696,7 @@
     function calculateActiveIndex() {
       const now = new Date();
       const currentYear = now.getFullYear();
-      const currentMonth = now.getMonth(); // 0-11
+      const currentMonth = now.getMonth();
       const currentDate = now.getDate();
 
       let targetYear = currentYear;
@@ -627,7 +710,6 @@
       }
 
       let index = payoutSchedule.findIndex(item => item.year === targetYear && item.monthIndex === targetMonth);
-      
       if (index === -1) {
         if (currentYear < payoutSchedule[0].year || (currentYear === payoutSchedule[0].year && currentMonth < payoutSchedule[0].monthIndex)) {
           index = 0;
@@ -638,7 +720,7 @@
       return index;
     }
 
-    // Render Table Dynamically with Selection Animation & Conditional Click Action
+    // Render Table Dynamically
     function renderPayoutTable() {
       const activeIndex = calculateActiveIndex();
       const tbody = document.getElementById('payout-table-body');
@@ -690,8 +772,185 @@
       });
     }
 
+    // PASSPHRASE VERIFICATION FOR CYCLE 4 TAB ONLY
+    function verifyCycle4TabPassword() {
+      const lockUntil = localStorage.getItem('stc_lockout_until');
+      if (lockUntil && Date.now() < parseInt(lockUntil)) {
+        showLockoutState(Math.ceil((parseInt(lockUntil) - Date.now()) / 1000));
+        return;
+      }
+
+      const input = document.getElementById('cycle4-tab-passcode-input');
+      const errorEl = document.getElementById('cycle4-tab-error');
+      const pwd = input.value.trim();
+
+      // Only accepts CYCLE4_TAB_PASSPHRASE (case-insensitive)
+      if (pwd.toLowerCase() === CYCLE4_TAB_PASSPHRASE.toLowerCase()) {
+        failedAttempts = 0;
+        totalFailedCounter = 0;
+        localStorage.removeItem('stc_lockout_until');
+        sessionStorage.setItem('stc_cycle4_authenticated', 'true');
+        unlockCycle4Tab(true);
+      } else {
+        failedAttempts++;
+        totalFailedCounter++;
+        errorEl.classList.remove('hidden');
+
+        if (totalFailedCounter >= 5) {
+          const lockoutTime = 15 * 60 * 1000; // 15 mins
+          localStorage.setItem('stc_lockout_until', Date.now() + lockoutTime);
+          showLockoutState(15 * 60);
+        } else if (failedAttempts >= 3) {
+          const lockoutTime = 60 * 1000; // 1 min
+          localStorage.setItem('stc_lockout_until', Date.now() + lockoutTime);
+          showLockoutState(60);
+        } else {
+          errorEl.textContent = `Incorrect passphrase (${3 - failedAttempts} attempts remaining before temporary lockout).`;
+        }
+      }
+    }
+
+    function showLockoutState(secondsLeft) {
+      const input = document.getElementById('cycle4-tab-passcode-input');
+      const btn = document.getElementById('cycle4-submit-btn');
+      const errorEl = document.getElementById('cycle4-tab-error');
+
+      input.disabled = true;
+      btn.disabled = true;
+      errorEl.classList.remove('hidden');
+
+      let currentSec = secondsLeft;
+      clearInterval(lockoutTimer);
+
+      lockoutTimer = setInterval(() => {
+        const mins = Math.floor(currentSec / 60);
+        const secs = currentSec % 60;
+        const timeStr = `${mins > 0 ? mins + 'm ' : ''}${secs < 10 ? '0' : ''}${secs}s`;
+
+        errorEl.textContent = `Too many failed attempts. Try again in ${timeStr}.`;
+        currentSec--;
+
+        if (currentSec < 0) {
+          clearInterval(lockoutTimer);
+          input.disabled = false;
+          btn.disabled = false;
+          errorEl.classList.add('hidden');
+          failedAttempts = 0;
+        }
+      }, 1000);
+    }
+
+    // TAB UNLOCK & IDLE TIMEOUT LOGIC
+    function unlockCycle4Tab(showNotification = true) {
+      document.getElementById('cycle4-auth-card').classList.add('hidden');
+      document.getElementById('cycle4-protected-content').classList.remove('hidden');
+      if (showNotification) {
+        showToast("Cycle 4 Schedule Unlocked");
+      }
+      startIdleMonitoring();
+    }
+
+    function lockCycle4Tab(userInitiated = false) {
+      sessionStorage.removeItem('stc_cycle4_authenticated');
+      stopIdleMonitoring();
+      closeSessionModal();
+
+      document.getElementById('cycle4-protected-content').classList.add('hidden');
+      document.getElementById('cycle4-auth-card').classList.remove('hidden');
+      document.getElementById('cycle4-tab-passcode-input').value = '';
+      document.getElementById('cycle4-tab-error').classList.add('hidden');
+      document.getElementById('session-warning-badge').classList.add('hidden');
+
+      if (userInitiated) {
+        showToast("Cycle 4 Tab Locked");
+      } else {
+        showToast("Session Timed Out due to Inactivity");
+      }
+    }
+
+    // DYNAMIC IDLE TIMEOUT MONITORING
+    function startIdleMonitoring() {
+      remainingSessionTime = SESSION_DURATION;
+      stopIdleMonitoring();
+
+      ['mousemove', 'keydown', 'touchstart', 'scroll'].forEach(evt => {
+        window.addEventListener(evt, resetIdleTimer, { passive: true });
+      });
+
+      countdownInterval = setInterval(updateIdleCountdown, 1000);
+    }
+
+    function stopIdleMonitoring() {
+      clearInterval(countdownInterval);
+      ['mousemove', 'keydown', 'touchstart', 'scroll'].forEach(evt => {
+        window.removeEventListener(evt, resetIdleTimer);
+      });
+    }
+
+    function resetIdleTimer() {
+      const modal = document.getElementById('session-modal');
+      if (modal.classList.contains('opacity-0')) {
+        remainingSessionTime = SESSION_DURATION;
+        document.getElementById('session-warning-badge').classList.add('hidden');
+      }
+    }
+
+    function updateIdleCountdown() {
+      remainingSessionTime--;
+
+      if (remainingSessionTime <= 60 && remainingSessionTime > 30) {
+        const badge = document.getElementById('session-warning-badge');
+        const badgeTimer = document.getElementById('session-badge-timer');
+        badge.classList.remove('hidden');
+        badgeTimer.textContent = `00:${remainingSessionTime < 10 ? '0' : ''}${remainingSessionTime}`;
+      }
+
+      if (remainingSessionTime <= 30 && remainingSessionTime > 0) {
+        openSessionModal(remainingSessionTime);
+      }
+
+      if (remainingSessionTime <= 0) {
+        lockCycle4Tab(false);
+      }
+    }
+
+    function openSessionModal(secondsLeft) {
+      const modal = document.getElementById('session-modal');
+      const card = document.getElementById('session-modal-card');
+      const countdown = document.getElementById('session-modal-countdown');
+
+      countdown.textContent = `00:${secondsLeft < 10 ? '0' : ''}${secondsLeft}`;
+
+      if (modal.classList.contains('opacity-0')) {
+        modal.classList.remove('opacity-0', 'pointer-events-none');
+        card.classList.remove('scale-95');
+        card.classList.add('scale-100');
+      }
+    }
+
+    function closeSessionModal() {
+      const modal = document.getElementById('session-modal');
+      const card = document.getElementById('session-modal-card');
+
+      card.classList.remove('scale-100');
+      card.classList.add('scale-95');
+      modal.classList.add('opacity-0', 'pointer-events-none');
+    }
+
+    function checkCycle4Session() {
+      const lockUntil = localStorage.getItem('stc_lockout_until');
+      if (lockUntil && Date.now() < parseInt(lockUntil)) {
+        showLockoutState(Math.ceil((parseInt(lockUntil) - Date.now()) / 1000));
+        return;
+      }
+      if (sessionStorage.getItem('stc_cycle4_authenticated') === 'true') {
+        unlockCycle4Tab(false);
+      }
+    }
+
     document.addEventListener('DOMContentLoaded', () => {
       renderPayoutTable();
+      checkCycle4Session();
     });
 
     // Intersection Observer for Smooth Reveal Animations on Scroll
@@ -797,15 +1056,14 @@
       modal.classList.add('opacity-0', 'pointer-events-none');
     }
 
-    // VERIFY PASSCODE AND STREAM DIRECT PDF DOWNLOAD
+    // VERIFY PASSCODE FOR COMMITMENT FORM ONLY AND STREAM PDF DOWNLOAD
     function verifyFormPassword() {
       const pwd = document.getElementById('form-password-input').value.trim();
       
-      if (pwd === "STCCycle4" || pwd === "stccycle4") {
+      // Only accepts COMMITMENT_FORM_PASSPHRASE (case-insensitive)
+      if (pwd.toLowerCase() === COMMITMENT_FORM_PASSPHRASE.toLowerCase()) {
         closePasswordModal();
         showToast("Access granted! Downloading form...");
-        
-        // Direct Google Drive download stream (bypasses Google Drive web UI)
         window.location.href = "https://drive.google.com/uc?export=download&id=16nqumtGesJgLqey-AofJDaZxI5w1YpR3";
       } else {
         document.getElementById('password-error').classList.remove('hidden');
@@ -813,7 +1071,7 @@
     }
 
     function executePrePayoutAction() {
-      const { month, member, isSammySlot, nextMember } = currentModalData;
+      const { month, member, isSammySlot } = currentModalData;
       
       let message = `Hi ${member} 👋\n\nYou are scheduled for the *ROSCA Cycle 4 payout* for *${month}*.\n\n*1. Payout Destination Confirmation:*\nPlease confirm if your *M-Pesa number* is still your preferred payout channel, or specify your updated bank/mobile details.\n\n*2. Payout Planning Tool:*\nBefore your payout date, check out the *STC Financial Goals Tracker* in our Master Drive (Vault > Personal Finance Tools). The entire tool is fully customizable. You can map out your allocation across needs, wants, and savings, then use the dedicated savings goals tab to direct your investments and track everything in one place.\n\nLet us know if you have any questions ahead of the cycle date!`;
       
