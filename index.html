@@ -6,6 +6,12 @@
   <meta name="robots" content="noindex, nofollow" />
   <title>STC-Chama | Member Resource Hub</title>
 
+  <!-- VERCEL WEB ANALYTICS -->
+  <script>
+    window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+  </script>
+  <script defer src="/_vercel/insights/script.js"></script>
+
   <!-- HARDENED SECURITY HEADERS & PROTOCOLS -->
   <meta http-equiv="Content-Security-Policy" content="
     default-src 'self';
@@ -13,7 +19,7 @@
     style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
     font-src 'self' https://fonts.gstatic.com;
     img-src 'self' data: https:;
-    connect-src 'self';
+    connect-src 'self' https://vitals.vercel-insights.com;
     frame-ancestors 'none';
     form-action 'self' https://docs.google.com https://bit.ly;
     base-uri 'self';
@@ -421,7 +427,7 @@
 
       <div class="bg-white rounded-xl shadow-sm border border-stcNavy/10 overflow-hidden">
         <div class="overflow-x-auto">
-          <table class="w-full text-left text-xs text-stcNavy">
+          table class="w-full text-left text-xs text-stcNavy">
             <thead class="bg-stcNavy text-white uppercase text-[10px] font-heading tracking-wider">
               <tr>
                 <th scope="col" class="py-3 px-2 sm:px-4 whitespace-nowrap">Rotation Month</th>
