@@ -3,8 +3,49 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="robots" content="noindex, nofollow" />
-  <title>STC-Chama | Member Resource Hub</title>
+  
+  <!-- SEARCH ENGINE INDEXING & AI DISCOVERY -->
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+  <meta name="googlebot" content="index, follow" />
+  
+  <title>STC Hub | STC-Chama Member Resource Hub & Investment Group</title>
+  <meta name="description" content="Official STC-Chama Member Resource Hub. Access official payment accounts, member forms, governance files, and ROSCA Cycle distribution schedules." />
+  <meta name="keywords" content="STC, STC Hub, STC-Chama, STC Investment Group, ROSCA, chama Kenya, stc-hub.online" />
+  <link rel="canonical" href="https://stc-hub.online/" />
+
+  <!-- FAVICON & TAB BRANDING -->
+  <link rel="icon" type="image/svg+xml" href="/logo.svg" />
+  <link rel="apple-touch-icon" href="/logo.svg" />
+
+  <!-- OPEN GRAPH / SOCIAL PREVIEWS (WhatsApp, iMessage, LinkedIn, Facebook) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://stc-hub.online/" />
+  <meta property="og:title" content="STC Hub | STC-Chama Member Resource Hub" />
+  <meta property="og:description" content="Access official payment accounts, member forms, governance files, and ROSCA distribution schedules." />
+  <meta property="og:image" content="https://stc-hub.online/logo.svg" />
+
+  <!-- TWITTER / X CARD -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:url" content="https://stc-hub.online/" />
+  <meta name="twitter:title" content="STC Hub | STC-Chama Member Resource Hub" />
+  <meta name="twitter:description" content="Access official payment accounts, member forms, governance files, and ROSCA distribution schedules." />
+  <meta name="twitter:image" content="https://stc-hub.online/logo.svg" />
+
+  <!-- AI & SEARCH ENGINE STRUCTURED DATA (JSON-LD SCHEMA) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "STC-Chama",
+    "alternateName": ["STC Hub", "STC Investment Group"],
+    "url": "https://stc-hub.online/",
+    "logo": "https://stc-hub.online/logo.svg",
+    "description": "Internal member resource hub and investment group portal for STC-Chama.",
+    "sameAs": [
+      "https://instagram.com/stcinvestmentgroup"
+    ]
+  }
+  </script>
 
   <!-- VERCEL WEB ANALYTICS -->
   <script>
@@ -26,7 +67,7 @@
   ">
   <meta http-equiv="X-Content-Type-Options" content="nosniff">
   <meta http-equiv="X-Frame-Options" content="DENY">
-  <meta name="referrer" content="no-referrer" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -143,12 +184,22 @@
 
   <!-- TOP HEADER -->
   <header class="w-full bg-stcNavy text-white py-7 px-4 shadow-md border-b-2 border-stcGold">
-    <div class="max-w-3xl mx-auto space-y-2.5 reveal-element">
-      <div class="flex justify-end">
+    <div class="max-w-3xl mx-auto space-y-3.5 reveal-element">
+      
+      <!-- TOP ROW: BRAND & BADGE -->
+      <div class="flex items-center justify-between">
+        <a href="https://stc-hub.online/" class="inline-flex items-center space-x-2.5 group">
+          <img src="/logo.svg" alt="STC Logo" class="w-6 h-6 object-contain transition-transform group-hover:scale-105" onerror="this.style.display='none'" />
+          <span class="font-heading text-sm font-bold tracking-tight text-white group-hover:text-stcGold transition-colors">
+            STC-Chama
+          </span>
+        </a>
         <span class="inline-block px-3 py-1 bg-stcGold/20 border border-stcGold text-stcGold text-[10px] sm:text-xs font-semibold rounded-lg tracking-wider uppercase">
           Internal Member Hub
         </span>
       </div>
+
+      <!-- MAIN TITLE & SUBTITLE -->
       <div class="text-left space-y-1">
         <h1 class="font-heading text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
           STC-Chama Directory
@@ -157,6 +208,7 @@
           Find official payment accounts, access forms, and governance documentation.
         </p>
       </div>
+
     </div>
   </header>
 
@@ -987,6 +1039,7 @@
       card.classList.remove('scale-100');
       card.classList.add('scale-95');
       modal.classList.add('opacity-0', 'pointer-events-none');
+      resetPasswordInput('form-password-input');
     }
 
     function checkCycle4Session() {
